@@ -14,7 +14,7 @@ export const header = style({
   backgroundColor:'white',
   // 노트북 ~ 태블릿
   '@media': {
-    'screen and (max-width:1024px) and (min-width:320px) ': {
+    'screen and (max-width:1366px) and (min-width:320px) ': {
       padding: "10px 24px",
       boxSizing:'border-box'
     },

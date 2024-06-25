@@ -1,24 +1,25 @@
 import { vars } from "@/app/globals.css";
 import { style } from "@vanilla-extract/css";
 
-export const todoContainer = style({
+export const doneContainer = style({
   width:'50%',
   display: 'flex',
   flexDirection: 'column',
   '@media': {
     'screen and (max-width:1366px) and (min-width:376px) ': {
-      width:'100%'
+      width: '100%',
+      marginTop:'46px'
     },
   }
 })
 
-export const todoIcon = style({
+export const doneIcon = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent:'start'
 })
 
-export const todoImageContainer = style({
+export const doneImageContainer = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -31,7 +32,7 @@ export const todoImageContainer = style({
   },
 })
 
-export const todoTextContainer = style({
+export const doneTextContainer = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -45,17 +46,17 @@ export const todoTextContainer = style({
   },
 })
 
-export const emptyTodo = style({
+export const emptyDone = style({
   width: '240px',
   height: '240px',
-  backgroundImage: 'url(/images/todoL.svg)',
+  backgroundImage: 'url(/images/doneL.svg)',
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   '@media': {
-    'screen and (max-width: 480px)': {
+    'screen and (max-width: 480px) and (min-width:320px)': {
       width: '120px',
       height:'120px',
-      backgroundImage: 'url(/images/todoS.svg)',
+      backgroundImage: 'url(/images/doneS.svg)',
     },
   },
 })

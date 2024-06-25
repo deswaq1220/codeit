@@ -22,17 +22,22 @@ export const vars = {
   rose500: '#F43F5E',
   lime300: '#BEFF264',
   amber800: '#92400E',
+  gray50: '#F9FAFB'
 };
 
 export const buttonStyles = style({
-  width:'164px',
+  width: '164px',
+  height:'56px',
   padding: '17px 24px',
+  boxSizing:'border-box',
   borderRadius: '24px',
   border: `2px solid ${vars.slate900}`,
   backgroundColor: `${vars.slate200}`,
   boxShadow: `4px 3.65px 0 ${vars.slate900}`,
   color: `${vars.slate900}`,
-  fontSize:'16px',
+  fontSize: '16px',
+  fontWeight: '700',
+  fontFamily: 'NanumSquareB',
   cursor: 'pointer',
   display: 'flex',
   justifyContent: 'center',
@@ -56,7 +61,7 @@ export const buttonStyles = style({
 globalStyle('html, body', {
   margin: 0,
   fontFamily: 'NanumSquare, Arial, sans-serif', // 나눔스퀘어 폰트 적용
-  backgroundColor: vars.slate100,
+  backgroundColor: vars.gray50,
   fontSize:"16px",
 });
 
