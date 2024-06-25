@@ -30,8 +30,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Gnb />
-      <body className={nanumSquare.className}>{children}</body>
+      <body className={nanumSquare.className}>
+        <Gnb />
+        {children}</body>
     </html>
   );
 }

@@ -1,6 +1,7 @@
 
 import done from '@/public/images/done.svg'
 import Image from "next/image"
+import CheckListDone from '../checkList/checkListDone/CheckListDone'
 import { doneContainer, doneIcon, doneImageContainer, doneTextContainer, emptyDone } from './done.css'
 const Done = () => {
   return (
@@ -15,6 +16,7 @@ const Done = () => {
           <span>해야 할 일을 체크해보세요!</span>
         </div>
       </div>
+      <CheckListDone />
     </div>
   )
 }

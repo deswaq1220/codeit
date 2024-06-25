@@ -31,7 +31,7 @@ export const searchBtn = style([
     backgroundColor: vars.slate200,
     color: vars.slate900,
     '@media': {
-      'screen and (max-width: 480px) and (min-width:320px)': {
+      'screen and (max-width: 500px) and (min-width:320px)': {
         width: '56px',
         height: '56px',
         justifyContent: 'center',
@@ -44,7 +44,7 @@ export const searchBtn = style([
 export const searchBtnText = style({
   marginLeft: '4px',
   '@media': {
-    'screen and (max-width: 480px)': {
+    'screen and (max-width: 500px)': {
       display: 'none',
     },
   },

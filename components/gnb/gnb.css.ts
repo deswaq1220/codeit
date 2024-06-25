@@ -1,7 +1,7 @@
 import { vars } from "@/app/globals.css";
 import { style } from "@vanilla-extract/css";
 
-export const header = style({
+export const headerContainer = style({
   width: '100%',
   height: '60px',
   display: 'flex',
@@ -34,7 +34,7 @@ export const logo = style({
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       backgroundImage: 'url(/images/logoS.svg)',
     },
   },

@@ -5,6 +5,7 @@ export const todoContainer = style({
   width:'50%',
   display: 'flex',
   flexDirection: 'column',
+  marginRight:'24px',
   '@media': {
     'screen and (max-width:1366px) and (min-width:376px) ': {
       width:'100%'
@@ -25,7 +26,7 @@ export const todoImageContainer = style({
   flexDirection: 'column',
   marginTop: '26px',
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       marginTop: '0px',
     },
   },
@@ -39,7 +40,7 @@ export const todoTextContainer = style({
   marginTop: '36px',
   color: vars.slate400,
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       marginTop: '12px',
     },
   },
@@ -52,7 +53,7 @@ export const emptyTodo = style({
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   '@media': {
-    'screen and (max-width: 480px)': {
+    'screen and (max-width: 500px)': {
       width: '120px',
       height:'120px',
       backgroundImage: 'url(/images/todoS.svg)',

@@ -26,7 +26,7 @@ export const doneImageContainer = style({
   flexDirection: 'column',
   marginTop: '26px',
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       marginTop: '0px',
     },
   },
@@ -40,7 +40,7 @@ export const doneTextContainer = style({
   marginTop: '36px',
   color: vars.slate400,
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       marginTop: '12px',
     },
   },
@@ -53,7 +53,7 @@ export const emptyDone = style({
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   '@media': {
-    'screen and (max-width: 480px) and (min-width:320px)': {
+    'screen and (max-width: 500px) and (min-width:320px)': {
       width: '120px',
       height:'120px',
       backgroundImage: 'url(/images/doneS.svg)',

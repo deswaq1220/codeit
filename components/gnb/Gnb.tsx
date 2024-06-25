@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { gnb, header, logo } from './gnb.css';
+import { gnb, headerContainer, logo } from './gnb.css';
 
 const Gnb = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
@@ -9,7 +9,7 @@ const Gnb = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      setIsSmallScreen(window.innerWidth <= 480);
+      setIsSmallScreen(window.innerWidth <= 500);
     };
 
     window.addEventListener('resize', handleResize);
@@ -27,13 +27,13 @@ const Gnb = () => {
   }
 
   return (
-    <header className={header}>
+    <div className={headerContainer}>
       <div className={gnb}>
         <Link href='/'>
           <div className={logo} />
         </Link>
       </div>
-    </header>
+    </div>
   );
 };
 

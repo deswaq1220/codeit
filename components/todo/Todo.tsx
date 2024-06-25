@@ -1,6 +1,7 @@
 
 import todo from '@/public/images/todo.svg'
 import Image from "next/image"
+import CheckList from '../checkList/checkListTodo/CheckListTodo'
 import { emptyTodo, todoContainer, todoIcon, todoImageContainer, todoTextContainer } from './todo.css'
 const Todo = () => {
   return (
@@ -15,6 +16,8 @@ const Todo = () => {
           <span>TODO를 새롭게 추가해주세요!</span>
         </div>
       </div>
+
+      <CheckList />
     </div>
   )
 }
