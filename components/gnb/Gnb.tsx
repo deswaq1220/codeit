@@ -1,7 +1,7 @@
 'use client'
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { gnb, header, logo } from './Gnb.css';
+import { gnb, header, logo } from './gnb.css';
 
 const Gnb = () => {
   const [isSmallScreen, setIsSmallScreen] = useState(false);

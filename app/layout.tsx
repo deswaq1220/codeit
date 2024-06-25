@@ -1,7 +1,7 @@
 import Gnb from "@/components/gnb/Gnb";
 import type { Metadata } from "next";
 import local from 'next/font/local';
-import './globals.css.ts';
+import './globals.css';
 
 const nanumSquare = local({
   src: [
