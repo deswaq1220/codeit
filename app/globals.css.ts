@@ -1,4 +1,4 @@
-import { globalFontFace, globalStyle } from '@vanilla-extract/css';
+import { globalFontFace, globalStyle, style } from '@vanilla-extract/css';
 
 const nanumSquareFont = {
   src: `local('NanumSquareR'), url('/fonts/NanumSquareR.otf') format('opentype')`,
@@ -24,10 +24,39 @@ export const vars = {
   amber800: '#92400E',
 };
 
+export const buttonStyles = style({
+  width:'164px',
+  padding: '17px 24px',
+  borderRadius: '24px',
+  border: `2px solid ${vars.slate900}`,
+  backgroundColor: `${vars.slate200}`,
+  boxShadow: `4px 3.65px 0 ${vars.slate900}`,
+  color: `${vars.slate900}`,
+  fontSize:'16px',
+  cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems:'center',
+  ':hover': {
+    backgroundColor: `${vars.violet600}`,
+    color:"white"
+  },
+  // ':active': {
+  //   backgroundColor: `${vars.slate300}`,
+  // },
+  // ':disabled': {
+  //   backgroundColor: `${vars.slate50}`,
+  //   color: `${vars.slate400}`,
+  //   cursor: 'not-allowed',
+  // },
+});
+
 
 
 globalStyle('html, body', {
   margin: 0,
   fontFamily: 'NanumSquare, Arial, sans-serif', // 나눔스퀘어 폰트 적용
+  backgroundColor: vars.slate100,
+  fontSize:"16px",
 });
 

@@ -1,3 +1,4 @@
+import { vars } from "@/app/globals.css";
 import { style } from "@vanilla-extract/css";
 
 export const header = style({
@@ -6,8 +7,11 @@ export const header = style({
   display: 'flex',
   justifyContent: "center",
   alignItems: 'center',
-  padding: "10px 150px",
+  padding: "10px 360px",
+  marginBottom:'24px',
   boxSizing: 'border-box',
+  borderBottom: `1px solid ${vars.slate200}`,
+  backgroundColor:'white',
   // 노트북 ~ 태블릿
   '@media': {
     'screen and (max-width:1024px) and (min-width:320px) ': {
@@ -19,7 +23,7 @@ export const header = style({
 })
 
 export const gnb = style({
-  width: "1620px",
+  width: "1920px",
   height: 'auto',
 })
 
