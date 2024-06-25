@@ -1,6 +1,9 @@
+import Done from "@/components/done/Done";
 
 export default function Home() {
   return (
-    <div>홈페이지</div>
+    <div>
+      <Done />
+    </div>
   );
 }
