@@ -1,6 +1,6 @@
 
 export default function Home() {
   return (
-    <div>하이</div>
+    <div>홈페이지</div>
   );
 }

@@ -1,6 +1,7 @@
+import Gnb from "@/components/gnb/Gnb";
 import type { Metadata } from "next";
 import local from 'next/font/local';
-import "./globals.css.ts";
+import './globals.css.ts';
 
 const nanumSquare = local({
   src: [
@@ -29,6 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Gnb />
       <body className={nanumSquare.className}>{children}</body>
     </html>
   );
