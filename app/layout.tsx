@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
+import local from 'next/font/local';
+import "./globals.css.ts";
 
-const inter = Inter({ subsets: ["latin"] });
+const nanumSquare = local({
+  src: [
+    {
+      path: '../public/fonts/NanumSquareR.otf',
+      weight: '400',
+      style: 'normal'
+    },
+    {
+      path: '../public/fonts/NanumSquareB.otf',
+      weight: '800',
+      style: 'normal'
+    },
+  ]
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={nanumSquare.className}>{children}</body>
     </html>
   );
 }
