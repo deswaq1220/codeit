@@ -11,13 +11,13 @@ interface TodoProps {
 }
 
 const Todo = ({ todoItems, completedTodoItem }: TodoProps) => {
-
+  const hasIncompleteItems = todoItems.length > 0;
   return (
     <div className={todoContainer}>
       <div className={todoIcon}>
         <Image src={todo} alt='todo' />
       </div>
-      {todoItems ? (
+      {hasIncompleteItems ? (
         <CheckListTodo todoItems={todoItems} completedTodoItem={completedTodoItem} />
       ) : (
         <div className={todoImageContainer}>

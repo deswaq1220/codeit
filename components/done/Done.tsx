@@ -8,12 +8,14 @@ interface DoneProps {
   doneItems: Array<{ id: string, name: string }>
 }
 const Done = ({ doneItems }: DoneProps) => {
+  const hasIncompleteItems = doneItems.length > 0;
+
   return (
     <div className={doneContainer}>
       <div className={doneIcon}>
         <Image src={done} alt='done' />
       </div>
-      {doneItems ? (<CheckListDone doneItems={doneItems} />) : (
+      {hasIncompleteItems ? (<CheckListDone doneItems={doneItems} />) : (
         <div className={doneImageContainer}>
           <div className={emptyDone} />
           <div className={doneTextContainer}>
