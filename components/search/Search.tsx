@@ -5,41 +5,23 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 import { searchBar, searchBtn, searchBtnText, searchContainer } from "./search.css";
 
-const tenantId = "sexydynamite";
-const Search = () => {
+interface SearchProps {
+  addTodoItem: (name: string) => void;
+}
+
+const Search = ({ addTodoItem }: SearchProps) => {
   const [isHovered, setIsHovered] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   //todo post 요청 
-  const handleTodoList = async (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
+  const handleTodoList = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
     if (searchInputRef.current) {
       const enteredSearch = searchInputRef.current.value;
-      console.log(enteredSearch); // 입력된 값 로그 찍어보깅
-
-      const reqBody = { name: enteredSearch };
-
-      try {
-        const response = await fetch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items`, {
-          method: 'POST',
-          body: JSON.stringify(reqBody),
-          headers: {
-            "Content-Type": "application/json"
-          }
-        });
-
-        if (!response.ok) {
-          // 요청 실패 처리
-          console.error('요청 실패');
-        } else {
-          console.log("요청성공", response)
-          searchInputRef.current.value = ""; // 입력 필드 초기화
-        }
-      } catch (error) {
-        // 네트워크 오류 등 예외 처리
-        console.error('Error:', error);
-      }
+      addTodoItem(enteredSearch);
+      searchInputRef.current.value = ""; // 입력 필드 초기화
     }
-  }
+  };
+
 
   // 엔터키 눌렀을때도 전송
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

@@ -58,10 +58,11 @@ export const buttonStyles = style({
 
 
 
-globalStyle('html, body', {
+globalStyle('html, body,ul,li', {
   margin: 0,
   fontFamily: 'NanumSquare, Arial, sans-serif', // 나눔스퀘어 폰트 적용
   backgroundColor: vars.gray50,
-  fontSize:"16px",
+  fontSize: "16px",
+  listStyle:'none'
 });
 

@@ -8,15 +8,19 @@ export const todoContainer = style({
   marginRight:'24px',
   '@media': {
     'screen and (max-width:1366px) and (min-width:376px) ': {
-      width:'100%'
+      width: '100%',
+      marginRight:'0'
     },
-  }
+    
+  },
+  
 })
 
 export const todoIcon = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent:'start'
+  justifyContent: 'start',
+  marginBottom:"16px"
 })
 
 export const todoImageContainer = style({

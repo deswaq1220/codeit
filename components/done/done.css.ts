@@ -16,7 +16,8 @@ export const doneContainer = style({
 export const doneIcon = style({
   display: 'flex',
   alignItems: 'center',
-  justifyContent:'start'
+  justifyContent: 'start',
+  marginBottom:"16px"
 })
 
 export const doneImageContainer = style({

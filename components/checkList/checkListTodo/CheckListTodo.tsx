@@ -1,12 +1,19 @@
 import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css"
 
-const CheckList = () => {
+const CheckListTodo = ({ todoItems }) => {
   return (
-    <div className={checkListTodoContainer}>
-      <div className={checkBoxTodoImage}></div>
-      <p>비타민 챙겨먹기</p>
-    </div>
+    <>
+      {
+        todoItems.map((item) => (
+          <ul className={checkListTodoContainer} key={item.id}>
+            <li className={checkBoxTodoImage}></li>
+            <p>{item.name}</p>
+          </ul>
+        ))
+      }
+
+    </>
   )
 }
 
-export default CheckList
+export default CheckListTodo

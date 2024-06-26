@@ -8,9 +8,10 @@ export const checkListTodoContainer = style({
   borderRadius: '27px',
   backgroundColor: 'white',
   padding: '9px 12px',
+  marginBottom:'16px',
   boxSizing: 'border-box',
   display: 'flex',
-  alignItems:'center'
+  alignItems: 'center'
 })
 
 export const checkBoxTodoImage = style({
