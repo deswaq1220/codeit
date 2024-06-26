@@ -14,3 +14,14 @@ export const checkListNameContainer = style({
   alignItems: 'center',
   backgroundColor:"white"
 })
+
+export const checkListName = style({
+  WebkitBoxSizing: 'content-box',
+  MozBoxSizing: 'content-box',
+  boxSizing:'border-box',
+  outline: "none",
+  border: "none",
+  fontFamily: 'NanumSquareR',
+  fontSize: '16px',
+  cursor:'pointer'
+})

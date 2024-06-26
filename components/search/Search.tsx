@@ -16,7 +16,11 @@ const Search = ({ addTodoItem }: SearchProps) => {
   //todo post 요청 
   const handleTodoList = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
     if (searchInputRef.current) {
-      const enteredSearch = searchInputRef.current.value;
+      const enteredSearch = searchInputRef.current.value.trim();
+      if (enteredSearch === "") {
+        alert("할 일을 입력해주세요");
+        return;
+      }
       addTodoItem(enteredSearch);
       searchInputRef.current.value = ""; // 입력 필드 초기화
     }

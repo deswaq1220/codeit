@@ -75,6 +75,20 @@ export const modifyBtn = style([
   
 ]);
 
+export const modifyBtnSuccess = style([
+  buttonStyles,
+  {
+    marginRight: '16px',
+    backgroundColor: vars.lime300, // 호버 색상으로 변경
+    color: vars.slate900,
+    '@media': {
+      'screen and (max-width: 500px) and (min-width:320px)': {
+        justifyContent: 'center',
+      },
+    },
+  },
+]);
+
 export const deleteBtn = style([
   buttonStyles,
   {

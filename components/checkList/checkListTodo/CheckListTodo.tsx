@@ -1,6 +1,15 @@
-import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css"
+'use client'
+import { useRouter } from "next/navigation";
+import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css";
 
 const CheckListTodo = ({ todoItems, completedTodoItem }) => {
+  const router = useRouter();
+
+
+  const handleNavigation = (id) => {
+    router.push(`/detail/${id}`);
+  }
+
   return (
     <>
       {
@@ -11,7 +20,7 @@ const CheckListTodo = ({ todoItems, completedTodoItem }) => {
               onClick={() => completedTodoItem(item.id)}
             >
             </li>
-            <p>{item.name}</p>
+            <p onClick={() => handleNavigation(item.id)}>{item.name}</p>
           </ul>
         ))
       }
