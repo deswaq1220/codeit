@@ -7,6 +7,7 @@ export const homeContainer = style({
   alignItems:"center",
   flexDirection: "column",
   padding: '0 360px',
+  marginTop:'24px',
   boxSizing: "border-box",
   // 노트북 ~ 태블릿
   '@media': {

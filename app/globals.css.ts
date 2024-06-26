@@ -17,10 +17,11 @@ export const vars = {
   slate300: '#CBD5E1',
   slate200: '#E2E8F0',
   slate100: '#F1F5F9',
+  slate50:'#F8FAFC',
   violet600: '#7C3AED',
   violet100: '#EDE9FE',
   rose500: '#F43F5E',
-  lime300: '#BEFF264',
+  lime300: '#BEF264',
   amber800: '#92400E',
   gray50: '#F9FAFB'
 };
@@ -42,10 +43,10 @@ export const buttonStyles = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems:'center',
-  ':hover': {
-    backgroundColor: `${vars.violet600}`,
-    color:"white"
-  },
+  // ':hover': {
+  //   backgroundColor: `${vars.violet600}`,
+  //   color:"white"
+  // },
   // ':active': {
   //   backgroundColor: `${vars.slate300}`,
   // },
@@ -64,5 +65,9 @@ globalStyle('html, body,ul,li', {
   backgroundColor: vars.gray50,
   fontSize: "16px",
   listStyle:'none'
+});
+
+globalStyle('p', {
+  margin: 0,
 });
 

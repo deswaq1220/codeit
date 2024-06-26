@@ -37,6 +37,10 @@ export const searchBtn = style([
         justifyContent: 'center',
       },
     },
+    ':hover': {
+      backgroundColor: `${vars.violet600}`,
+      color:"white"
+    },
   },
   
 ]);

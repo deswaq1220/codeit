@@ -8,7 +8,6 @@ export const headerContainer = style({
   justifyContent: "center",
   alignItems: 'center',
   padding: "10px 360px",
-  marginBottom:'24px',
   boxSizing: 'border-box',
   borderBottom: `1px solid ${vars.slate200}`,
   backgroundColor:'white',

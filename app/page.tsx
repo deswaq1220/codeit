@@ -15,6 +15,7 @@ export default function Home() {
   const [hasMounted, setHasMounted] = useState(false);
   const [todoItems, setTodoItems] = useState([]);
 
+
   // 투두 불러오는 함수
   const fetchTodoData = async () => {
     try {
@@ -46,6 +47,22 @@ export default function Home() {
     }
   };
 
+  //투두 완료 체크
+  const completedTodoItem = async (itemId: number) => {
+    try {
+      const updateData = {
+        isCompleted: true
+      };
+      await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
+      fetchTodoData(); // 완료 후 데이터를 다시 가져옴
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
+  // 완료된 항목과 완료되지 않은 항목을 필터링
+  const completedItems = todoItems.filter(item => item.isCompleted);
+  const incompleteItems = todoItems.filter(item => !item.isCompleted);
 
   // 윈도우 너비 확인용
   useEffect(() => {
@@ -71,8 +88,8 @@ export default function Home() {
     <div className={homeContainer}>
       <Search addTodoItem={addTodoItem} />
       <div className={todoList}>
-        <Todo todoItems={todoItems} />
-        <Done />
+        <Todo todoItems={incompleteItems} completedTodoItem={completedTodoItem} />
+        <Done doneItems={completedItems} />
       </div>
     </div>
   );

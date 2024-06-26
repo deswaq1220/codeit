@@ -10,7 +10,9 @@ export const checkListDoneContainer = style({
   padding: '9px 12px',
   boxSizing: 'border-box',
   display: 'flex',
-  alignItems:'center'
+  alignItems: 'center',
+  marginBottom: "16px",
+  cursor:'pointer'
 })
 
 export const checkBoxDoneImage = style({

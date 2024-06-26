@@ -1,11 +1,18 @@
 import { checkBoxDoneImage, checkListDoneContainer } from "./checkListDone.css"
 
-const CheckListDone = () => {
+const CheckListDone = ({ doneItems }) => {
   return (
-    <div className={checkListDoneContainer}>
-      <div className={checkBoxDoneImage}></div>
-      <p>운동다녀오기</p>
-    </div>
+    <>
+      {
+        doneItems.map((item) => (
+          <ul className={checkListDoneContainer} key={item.id}>
+            <div className={checkBoxDoneImage}></div>
+            <p><del> {item.name}</del> </p>
+          </ul>
+        ))
+      }
+    </>
+
   )
 }
 

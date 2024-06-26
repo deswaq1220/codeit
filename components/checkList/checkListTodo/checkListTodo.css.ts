@@ -11,7 +11,8 @@ export const checkListTodoContainer = style({
   marginBottom:'16px',
   boxSizing: 'border-box',
   display: 'flex',
-  alignItems: 'center'
+  alignItems: 'center',
+  cursor:'pointer'
 })
 
 export const checkBoxTodoImage = style({
@@ -21,5 +22,14 @@ export const checkBoxTodoImage = style({
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   marginRight: '16px',
-  cursor:'pointer'
+  cursor: 'pointer',
+  selectors: {
+    '&:hover': {
+      backgroundImage: 'url(/icons/checkbox_done.svg)', // 호버 시 변경될 이미지 경로
+    },
+    '&:active': {
+      backgroundImage: 'url(/icons/checkbox_done.svg)', // 클릭 시 변경될 이미지 경로
+    },
+  },
+  
 })
