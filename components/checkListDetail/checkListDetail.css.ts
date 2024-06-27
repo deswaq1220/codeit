@@ -27,7 +27,8 @@ export const checkListName = style({
   border: "none",
   fontFamily: 'NanumSquareR',
   fontSize: '16px',
-  cursor:'pointer'
+  cursor: 'pointer',
+  backgroundColor:'transparent'
 })
 
 export const checkIcon = style({
