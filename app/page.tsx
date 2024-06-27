@@ -34,7 +34,7 @@ export default function Home() {
         const newItems = response.data;
 
         // 중복 데이터 필터링
-        const filteredItems = newItems.filter(newItem => !todoItems.some(item => item.id === newItem.id));
+        const filteredItems: TodoItem[] = newItems.filter((newItem: TodoItem) => !todoItems.some((item: TodoItem) => item.id === newItem.id));
 
         if (filteredItems.length === 0) {
           setHasMore(false); // 데이터가 없으면 더 이상 요청하지 않음
