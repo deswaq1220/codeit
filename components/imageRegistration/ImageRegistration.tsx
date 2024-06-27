@@ -1,9 +1,9 @@
 'use client'
 // 이미지 등록 컴포넌트
+import { imageUploadAPI } from '@/api/todoRequests'
 import Edit from '@/public/icons/edit.svg'
 import plusG from '@/public/icons/plusG.svg'
 import imageIcon from '@/public/images/img.svg'
-import axios from 'axios'
 import Image from "next/image"
 import { useEffect, useRef, useState } from 'react'
 import { addImageBtn, imageContainer, images, modifyImageBtn } from './imageRegistration.css'
@@ -43,11 +43,7 @@ const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps
     formData.append('image', selectedFile); // FormData에 선택된 파일 추가
 
     try {
-      const response = await axios.post(`https://assignment-todolist-api.vercel.app/api/${tenantId}/images/upload`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
+      const response = await await imageUploadAPI(formData);
       const uploadedUrl = response.data.url; // 반환된 URL
       onUploadSuccess(uploadedUrl); // 부모 컴포넌트에 URL 전달
       alert('사진이 업로드 되었습니다! 수정완료를 누르지 않으면 사진이 등록되지 않으니 주의해주세요😄')

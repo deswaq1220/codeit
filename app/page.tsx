@@ -1,14 +1,14 @@
 'use client'
+import { addTodoAPI, itemQueryAPI, modifyTodoAPI } from "@/api/todoRequests";
 import Done from "@/components/done/Done";
 import Search from "@/components/search/Search";
 import Todo from "@/components/todo/Todo";
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { homeContainer, todoList } from "./home.css";
 import './page.module.css';
 
 
-const tenantId = "sexydynamite";
+
 const ITEMS_PER_PAGE = 10; // 한 번에 가져올 아이템 수
 interface TodoItem {
   id: number;
@@ -29,7 +29,7 @@ export default function Home() {
   const fetchTodoData = async (page: number) => {
     try {
       setLoading(true);
-      const response = await axios.get(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items?page=${page}&limit=${ITEMS_PER_PAGE}`);
+      const response = await itemQueryAPI(page)
       if (response.status === 200) {
         const newItems = response.data;
 
@@ -94,7 +94,7 @@ export default function Home() {
   // 투두 추가 함수
   const addTodoItem = async (name: string) => {
     try {
-      const response = await axios.post(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items`, { name });
+      const response = await addTodoAPI(name)
       if (response.status === 201) {
         const newItem = response.data;
         setTodoItems(prevItems => [newItem, ...prevItems]); // 새 항목을 기존 항목 앞에 추가
@@ -110,7 +110,7 @@ export default function Home() {
       const updateData = {
         isCompleted: true
       };
-      await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData);
+      await modifyTodoAPI(itemId, updateData);
       setTodoItems(prevItems => prevItems.map(item => item.id === itemId ? { ...item, isCompleted: true } : item));
     } catch (error) {
       console.error('Error:', error);
