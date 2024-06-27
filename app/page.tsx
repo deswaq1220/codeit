@@ -17,9 +17,9 @@ interface TodoItem {
 }
 
 export default function Home() {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
-  const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
+  const [isSmallScreen, setIsSmallScreen] = useState(false); // 화면 너비 확인용 상태
+  const [hasMounted, setHasMounted] = useState(false); // 컴포넌트가 마운트 되었는지 확인하는 상태
+  const [todoItems, setTodoItems] = useState<TodoItem[]>([]); // 투두 항목을 저장하는 상태
 
 
   // 투두 불러오는 함수
@@ -37,6 +37,7 @@ export default function Home() {
     }
   };
 
+  // 컴포넌트 마운트 시 투두 데이터를 불러옴
   useEffect(() => {
     fetchTodoData();
   }, []);
@@ -53,7 +54,7 @@ export default function Home() {
     }
   };
 
-  //투두 완료 체크
+  //투두 항목을 완료 상태로 업데이트 하는 함수
   const completedTodoItem = async (itemId: number) => {
     try {
       const updateData = {
@@ -77,9 +78,9 @@ export default function Home() {
     };
 
     window.addEventListener('resize', handleResize);
-    handleResize(); // Initialize on mount
+    handleResize(); // 마운트 시 초기화
 
-    setHasMounted(true);
+    setHasMounted(true); // 컴포넌트가 마운트되었음을 표시
 
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -92,10 +93,10 @@ export default function Home() {
 
   return (
     <div className={homeContainer}>
-      <Search addTodoItem={addTodoItem} />
+      <Search addTodoItem={addTodoItem} /> {/* 투두 항목 추가 컴포넌트 */}
       <div className={todoList}>
-        <Todo todoItems={incompleteItems} completedTodoItem={completedTodoItem} />
-        <Done doneItems={completedItems} />
+        <Todo todoItems={incompleteItems} completedTodoItem={completedTodoItem} /> {/* 완료 되지 않은 투두 항목 컴포넌트 */}
+        <Done doneItems={completedItems} /> {/* 완료된 투두  컴포넌트 */}
       </div>
     </div>
   );

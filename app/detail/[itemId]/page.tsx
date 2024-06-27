@@ -12,7 +12,7 @@ import { useEffect, useState } from "react"
 import { deleteBtn, detailBtnWrap, detailContainer, detailListContainer, imageMemoContainer, modifyBtn, modifyBtnSuccess } from "../detail.css"
 const tenantId = "sexydynamite";
 
-
+//todoDetails 타입 정의
 interface TodoDetails {
   name: string;
   memo: string;
@@ -28,7 +28,7 @@ const Detail = (props: { params: { itemId: string } }) => {
 
   const router = useRouter();
 
-
+  // 페이지 이동
   const handleNavigation = () => {
     router.push(`/`);
   }
@@ -51,8 +51,8 @@ const Detail = (props: { params: { itemId: string } }) => {
   const modifyTodoItem = async () => {
     try {
       const updateData = {
-        name: todoDetails.name.trim() !== '' ? todoDetails.name : '',
-        memo: todoDetails.memo.trim() !== '' ? todoDetails.memo : '',
+        name: todoDetails.name !== null ? todoDetails.name : '',
+        memo: todoDetails.memo !== null ? todoDetails.memo : '',
         imageUrl: todoDetails.imageUrl !== null ? todoDetails.imageUrl : '',
         isCompleted: todoDetails.isCompleted
       };
@@ -79,9 +79,7 @@ const Detail = (props: { params: { itemId: string } }) => {
     }
   }
 
-
-
-
+  // 컴포넌트 마운트 시 투두 상세 데이터 불러오기
   useEffect(() => {
     fetchData()
   }, [])

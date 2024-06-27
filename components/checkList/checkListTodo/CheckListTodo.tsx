@@ -1,3 +1,4 @@
+// 완료되지 않은 투두 항목 컴포넌트
 'use client'
 import { useRouter } from "next/navigation";
 import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css";

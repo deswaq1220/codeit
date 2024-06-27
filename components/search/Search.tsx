@@ -1,4 +1,5 @@
 'use client'
+//투두 등록 컴포넌트
 import plusB from "@/public/icons/plusB.svg";
 import plusW from "@/public/icons/plusW.svg";
 import Image from "next/image";
@@ -10,15 +11,15 @@ interface SearchProps {
 }
 
 const Search = ({ addTodoItem }: SearchProps) => {
-  const [isHovered, setIsHovered] = useState<boolean>(false);
-  const searchInputRef = useRef<HTMLInputElement>(null);
+  const [isHovered, setIsHovered] = useState<boolean>(false); // 버튼 호버 상태 관리
+  const searchInputRef = useRef<HTMLInputElement>(null); // 입력 필드 참조
 
-  //todo post 요청 
+  // 투두 항목을 추가하는 함수
   const handleTodoList = (e: React.MouseEvent<HTMLButtonElement> | React.KeyboardEvent<HTMLInputElement>) => {
     if (searchInputRef.current) {
-      const enteredSearch = searchInputRef.current.value.trim();
+      const enteredSearch = searchInputRef.current.value.trim(); // 입력된 값 가져오기
       if (enteredSearch === "") {
-        alert("할 일을 입력해주세요");
+        alert("할 일을 입력해주세요"); // 입력 값이 없을 때 경고
         return;
       }
       addTodoItem(enteredSearch);

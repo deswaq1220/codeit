@@ -1,5 +1,5 @@
 'use client'
-
+// 이미지 등록 컴포넌트
 import Edit from '@/public/icons/edit.svg'
 import plusG from '@/public/icons/plusG.svg'
 import imageIcon from '@/public/images/img.svg'
@@ -14,23 +14,23 @@ interface ImageRegistrationProps {
 }
 
 const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null); // 선택된 파일 상태 저장
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null); // 미리보기 URL 상태 저장
+  const fileInputRef = useRef<HTMLInputElement | null>(null); // 파일 입력 참조
 
 
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      setSelectedFile(file);
+      setSelectedFile(file); // 선택된 파일 설정
 
       // 파일 미리보기 URL 생성
       const reader = new FileReader();
       reader.onloadend = () => {
-        setPreviewUrl(reader.result as string);
+        setPreviewUrl(reader.result as string); // 미리보기 URL 설정
       };
-      reader.readAsDataURL(file);
+      reader.readAsDataURL(file); // 파일을 데이터 URL로 읽기
     }
     console.log(file)
   };
@@ -39,7 +39,7 @@ const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
     if (!selectedFile) return;
 
     const formData = new FormData();
-    formData.append('image', selectedFile);
+    formData.append('image', selectedFile); // FormData에 선택된 파일 추가
 
     try {
       const response = await axios.post(`https://assignment-todolist-api.vercel.app/api/${tenantId}/images/upload`, formData, {
@@ -79,11 +79,11 @@ const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
             accept="image/*"
             ref={fileInputRef}
             style={{ display: 'none' }}
-            onChange={handleFileChange}
+            onChange={handleFileChange} // 파일 변경 핸들러
           />
           <button
             className={addImageBtn}
-            onClick={() => fileInputRef.current?.click()}
+            onClick={() => fileInputRef.current?.click()}  // 파일 선택 버튼 클릭 시 파일 입력 클릭
           >
             <Image src={plusG} alt='플러스 아이콘' />
           </button>

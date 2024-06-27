@@ -15,6 +15,10 @@ export const checkListNameContainer = style({
   backgroundColor:"white"
 })
 
+export const checkListNameContainerCompleted = style({
+  backgroundColor: vars.violet100, // 원하는 색상으로 변경
+});
+
 export const checkListName = style({
   WebkitBoxSizing: 'content-box',
   MozBoxSizing: 'content-box',

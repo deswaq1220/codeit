@@ -1,3 +1,4 @@
+// 메모 입력 컴포넌트
 import '@/app/page.module.css';
 import { memoContainer, memoText, textArea } from "./memoRegistration.css";
 

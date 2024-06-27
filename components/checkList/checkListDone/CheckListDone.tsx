@@ -1,3 +1,4 @@
+// 완료된 투두 항목 컴포넌트
 import { useRouter } from "next/navigation";
 import { checkBoxDoneImage, checkListDoneContainer } from "./checkListDone.css";
 
