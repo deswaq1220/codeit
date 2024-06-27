@@ -1,7 +1,7 @@
 // 완료되지 않은 투두 항목 컴포넌트
 'use client'
 import { useRouter } from "next/navigation";
-import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css";
+import { checkBoxTodoImage, checkListTodoContainer, todoText } from "./checkListTodo.css";
 
 interface TodoItem {
   id: number;
@@ -31,7 +31,7 @@ const CheckListTodo = ({ todoItems, completedTodoItem }: CheckListTodoProps) => 
               onClick={() => completedTodoItem(item.id)}
             >
             </li>
-            <p onClick={() => handleNavigation(item.id)}>{item.name}</p>
+            <p className={todoText} onClick={() => handleNavigation(item.id)}>{item.name}</p>
           </ul>
         ))
       }

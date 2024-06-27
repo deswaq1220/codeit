@@ -1,5 +1,6 @@
 // 완료된 투두 항목 컴포넌트
 import { useRouter } from "next/navigation";
+import { todoText } from "../checkListTodo/checkListTodo.css";
 import { checkBoxDoneImage, checkListDoneContainer } from "./checkListDone.css";
 
 interface DoneItem {
@@ -24,7 +25,7 @@ const CheckListDone = ({ doneItems }: CheckListDoneProps) => {
         doneItems.map((item) => (
           <ul className={checkListDoneContainer} key={item.id}>
             <div className={checkBoxDoneImage}></div>
-            <p onClick={() => handleNavigation(item.id)}><del> {item.name}</del> </p>
+            <p className={todoText} onClick={() => handleNavigation(item.id)}><del> {item.name}</del> </p>
           </ul>
         ))
       }
