@@ -35,5 +35,5 @@ export const checkBoxTodoImage = style({
 })
 
 export const todoText = style({
-  width:"95%"
+  width:"90%"
 })
