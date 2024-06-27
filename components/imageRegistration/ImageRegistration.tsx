@@ -47,7 +47,7 @@ const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
           'Content-Type': 'multipart/form-data'
         }
       });
-
+      alert('사진이 성공적으로 업로드 되었습니다! 콘솔 url을 확인해주세요')
       console.log('업로드 성공:', response.data);
 
     } catch (error) {
