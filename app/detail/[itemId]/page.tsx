@@ -59,7 +59,7 @@ const Detail = (props: { params: { itemId: string } }) => {
       await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
       setIsModified(true);
       handleNavigation()
-      // console.log('수정된 데이터:', updateData);
+      console.log('수정된 데이터:', updateData);
       alert('수정 완료')
       // fetchData(); // 완료 후 데이터를 다시 가져옴
     } catch (error) {
@@ -79,6 +79,10 @@ const Detail = (props: { params: { itemId: string } }) => {
     }
   }
 
+  const handleImageUploadSuccess = (url: string) => {
+    setTodoDetails({ ...todoDetails, imageUrl: url });
+  }
+
   // 컴포넌트 마운트 시 투두 상세 데이터 불러오기
   useEffect(() => {
     fetchData()
@@ -89,7 +93,7 @@ const Detail = (props: { params: { itemId: string } }) => {
       <div className={detailListContainer}>
         <CheckListDetail todoDetails={todoDetails} setTodoDetails={setTodoDetails} />
         <div className={imageMemoContainer}>
-          <ImageRegistration imageUrl={todoDetails.imageUrl} />
+          <ImageRegistration imageUrl={todoDetails.imageUrl} onUploadSuccess={handleImageUploadSuccess} />
           <MemoRegistration memo={todoDetails.memo} setMemo={(newMemo: string) => setTodoDetails({ ...todoDetails, memo: newMemo })} />
         </div>
         <div className={detailBtnWrap}>

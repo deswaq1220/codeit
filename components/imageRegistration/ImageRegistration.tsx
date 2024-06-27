@@ -11,9 +11,10 @@ const tenantId = "sexydynamite";
 
 interface ImageRegistrationProps {
   imageUrl: string;
+  onUploadSuccess: (url: string) => void;
 }
 
-const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
+const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null); // 선택된 파일 상태 저장
   const [previewUrl, setPreviewUrl] = useState<string | null>(null); // 미리보기 URL 상태 저장
   const fileInputRef = useRef<HTMLInputElement | null>(null); // 파일 입력 참조
@@ -47,7 +48,8 @@ const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
           'Content-Type': 'multipart/form-data'
         }
       });
-      alert('사진이 성공적으로 업로드 되었습니다! 콘솔 url을 확인해주세요')
+      const uploadedUrl = response.data.url; // 반환된 URL
+      onUploadSuccess(uploadedUrl); // 부모 컴포넌트에 URL 전달
       console.log('업로드 성공:', response.data);
 
     } catch (error) {
