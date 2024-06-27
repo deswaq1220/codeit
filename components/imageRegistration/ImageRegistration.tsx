@@ -32,7 +32,7 @@ const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
       };
       reader.readAsDataURL(file); // 파일을 데이터 URL로 읽기
     }
-    console.log(file)
+    // console.log(file)
   };
 
   const handleUpload = async () => {

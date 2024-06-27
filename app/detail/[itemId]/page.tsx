@@ -37,7 +37,7 @@ const Detail = (props: { params: { itemId: string } }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`)
-      console.log('Fetched data:', response.data);
+      // console.log('상세 데이터:', response.data);
       setTodoDetails(response.data)
       setName(response.data.name);
       setMemo(response.data.memo);
@@ -59,7 +59,7 @@ const Detail = (props: { params: { itemId: string } }) => {
       await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
       setIsModified(true);
       handleNavigation()
-      console.log('After update:', updateData);
+      // console.log('수정된 데이터:', updateData);
       alert('수정 완료')
       // fetchData(); // 완료 후 데이터를 다시 가져옴
     } catch (error) {

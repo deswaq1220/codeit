@@ -54,7 +54,7 @@ export default function Home() {
       } else {
         console.error('요청 실패');
       }
-      console.log('투두 데이터', response.data);
+      // console.log('투두 데이터', response.data);
     } catch (error) {
       console.error('Error:', error);
     } finally {
