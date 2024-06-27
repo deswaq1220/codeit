@@ -3,13 +3,13 @@ import Done from "@/components/done/Done";
 import Search from "@/components/search/Search";
 import Todo from "@/components/todo/Todo";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { homeContainer, todoList } from "./home.css";
 import './page.module.css';
 
 
 const tenantId = "sexydynamite";
-
+const ITEMS_PER_PAGE = 10; // 한 번에 가져올 아이템 수
 interface TodoItem {
   id: number;
   name: string;
@@ -20,34 +20,85 @@ export default function Home() {
   const [isSmallScreen, setIsSmallScreen] = useState(false); // 화면 너비 확인용 상태
   const [hasMounted, setHasMounted] = useState(false); // 컴포넌트가 마운트 되었는지 확인하는 상태
   const [todoItems, setTodoItems] = useState<TodoItem[]>([]); // 투두 항목을 저장하는 상태
-
+  const [loading, setLoading] = useState(false); // 데이터 로드 상태
+  const [page, setPage] = useState(1); // 현재 페이지 번호
+  const [hasMore, setHasMore] = useState(true);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
 
   // 투두 불러오는 함수
-  const fetchTodoData = async () => {
+  const fetchTodoData = async (page: number) => {
     try {
-      const response = await axios.get(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items`);
-      if (!response) {
-        console.error('요청 실패');
+      setLoading(true);
+      const response = await axios.get(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items?page=${page}&limit=${ITEMS_PER_PAGE}`);
+      if (response.status === 200) {
+        const newItems = response.data;
+
+        // 중복 데이터 필터링
+        const filteredItems = newItems.filter(newItem => !todoItems.some(item => item.id === newItem.id));
+
+        if (filteredItems.length === 0) {
+          setHasMore(false); // 데이터가 없으면 더 이상 요청하지 않음
+          return;
+        }
+
+        if (filteredItems.length < ITEMS_PER_PAGE) {
+          setHasMore(false); // 더 이상 데이터가 없음을 표시
+        }
+
+        // 새로운 페이지의 데이터가 중복되지 않도록 조건을 확인
+        if (page === 1) {
+          setTodoItems(filteredItems); // 페이지가 1인 경우 데이터 덮어쓰기
+        } else {
+          setTodoItems(prevItems => [...prevItems, ...filteredItems]); // 페이지가 1이 아닌 경우 데이터 추가
+        }
       } else {
-        setTodoItems(response.data);
-        console.log(response.data)
+        console.error('요청 실패');
       }
+      console.log('투두 데이터', response.data);
     } catch (error) {
       console.error('Error:', error);
+    } finally {
+      setLoading(false);
     }
   };
-
   // 컴포넌트 마운트 시 투두 데이터를 불러옴
   useEffect(() => {
-    fetchTodoData();
-  }, []);
+    if (hasMore) {
+      fetchTodoData(page);
+    }
+  }, [page, hasMore]);
+
+
+  // Intersection Observer 설정
+  useEffect(() => {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting && !loading && hasMore) {
+        setPage(prevPage => prevPage + 1);
+      }
+    }, {
+      threshold: 1.0
+    });
+
+    if (loaderRef.current && hasMore) {
+      observer.observe(loaderRef.current);
+    }
+
+    return () => {
+      if (loaderRef.current) {
+        observer.unobserve(loaderRef.current);
+      }
+    };
+  }, [loading, hasMore, todoItems]);
+
 
   // 투두 추가 함수
   const addTodoItem = async (name: string) => {
     try {
       const response = await axios.post(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items`, { name });
       if (response.status === 201) {
-        fetchTodoData(); // 새 데이터를 추가한 후 데이터를 다시 가져옴
+        setPage(1); // 첫 페이지부터 다시 불러옴
+        setTodoItems([]); // 데이터 초기화
+        fetchTodoData(1); // 첫 페이지 데이터를 다시 불러옴
       }
     } catch (error) {
       console.error('Error:', error);
@@ -60,12 +111,12 @@ export default function Home() {
       const updateData = {
         isCompleted: true
       };
-      await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
-      fetchTodoData(); // 완료 후 데이터를 다시 가져옴
+      await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData);
+      setTodoItems(prevItems => prevItems.map(item => item.id === itemId ? { ...item, isCompleted: true } : item));
     } catch (error) {
       console.error('Error:', error);
     }
-  }
+  };
 
   // 완료된 항목과 완료되지 않은 항목을 필터링
   const completedItems = todoItems.filter(item => item.isCompleted);
@@ -98,6 +149,9 @@ export default function Home() {
         <Todo todoItems={incompleteItems} completedTodoItem={completedTodoItem} /> {/* 완료 되지 않은 투두 항목 컴포넌트 */}
         <Done doneItems={completedItems} /> {/* 완료된 투두  컴포넌트 */}
       </div>
+      {loading && <p>Loading...</p>} {/* 로딩 중일 때 표시 */}
+      <div ref={loaderRef} />
+
     </div>
   );
 }
