@@ -5,7 +5,7 @@ import plusG from '@/public/icons/plusG.svg'
 import imageIcon from '@/public/images/img.svg'
 import axios from 'axios'
 import Image from "next/image"
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { addImageBtn, imageContainer, images, modifyImageBtn } from './imageRegistration.css'
 const tenantId = "sexydynamite";
 
@@ -50,6 +50,7 @@ const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps
       });
       const uploadedUrl = response.data.url; // 반환된 URL
       onUploadSuccess(uploadedUrl); // 부모 컴포넌트에 URL 전달
+      alert('사진이 업로드 되었습니다! 수정완료를 누르지 않으면 사진이 등록되지 않으니 주의해주세요😄')
       console.log('업로드 성공:', response.data);
 
     } catch (error) {
@@ -57,21 +58,37 @@ const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps
     }
   };
 
+  useEffect(() => {
+    setPreviewUrl(imageUrl); // 컴포넌트가 마운트될 때 imageUrl로 미리보기 설정
+  }, [imageUrl]);
 
   return (
     <>
       {imageUrl ? (
         <div className={images}>
-          <img src={imageUrl} alt="이미지" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '24px' }} />
+          {previewUrl && (
+            <img src={previewUrl} alt="이미지" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '24px' }} />
+          )}
           <button
             className={modifyImageBtn}
+            onClick={() => fileInputRef.current?.click()}  // 파일 선택 버튼 클릭 시 파일 입력 클릭
           >
             <Image src={Edit} alt='추가 아이콘' />
           </button>
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            style={{ display: 'none' }}
+            onChange={handleFileChange} // 파일 변경 핸들러
+          />
+          {selectedFile && (
+            <button onClick={handleUpload} className={addImageBtn}>
+              <Image src={plusG} alt='플러스 아이콘' />
+            </button>
+          )}
         </div>
-
       ) : (
-
         <div className={imageContainer}>
           {!previewUrl && (
             <Image src={imageIcon} alt="사진아이콘" />
@@ -100,7 +117,6 @@ const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps
             </button>
           )}
         </div>
-
       )}
     </>
 
