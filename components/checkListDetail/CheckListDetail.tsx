@@ -1,8 +1,22 @@
+import checkBoxDone from '@/public/icons/checkbox_done.svg';
+import checkBox from '@/public/icons/checkbox_none.svg';
+import Image from "next/image";
 import { useEffect, useState } from "react";
-import { checkBoxTodoImage } from "../checkList/checkListTodo/checkListTodo.css";
-import { checkListName, checkListNameContainer } from "./checkListDetail.css";
+import { checkIcon, checkListName, checkListNameContainer } from "./checkListDetail.css";
 
-const CheckListDetail = ({ todoDetails, setTodoDetails }) => {
+interface TodoDetails {
+  name: string;
+  memo: string;
+  imageUrl: string;
+  isCompleted: boolean;
+}
+
+interface CheckListDetailProps {
+  todoDetails: TodoDetails;
+  setTodoDetails: React.Dispatch<React.SetStateAction<TodoDetails>>;
+}
+
+const CheckListDetail = ({ todoDetails, setTodoDetails }: CheckListDetailProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [inputValue, setInputValue] = useState(todoDetails.name);
 
@@ -26,9 +40,16 @@ const CheckListDetail = ({ todoDetails, setTodoDetails }) => {
     setIsEditing(false);
   };
 
+  console.log(todoDetails.isCompleted)
+
   return (
     <div className={checkListNameContainer}>
-      <div className={checkBoxTodoImage}></div>
+      {todoDetails.isCompleted ? (
+        <Image src={checkBoxDone} alt="체크박스" className={checkIcon} />
+      ) : (
+        <Image src={checkBox} alt="체크박스" className={checkIcon} />
+      )}
+      {/* <div className={checkBoxTodoImage}></div> */}
       {isEditing ? (
         <input
           className={checkListName}

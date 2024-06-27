@@ -12,11 +12,19 @@ import { useEffect, useState } from "react"
 import { deleteBtn, detailBtnWrap, detailContainer, detailListContainer, imageMemoContainer, modifyBtn, modifyBtnSuccess } from "../detail.css"
 const tenantId = "sexydynamite";
 
+
+interface TodoDetails {
+  name: string;
+  memo: string;
+  imageUrl: string;
+  isCompleted: boolean;
+}
+
 const Detail = (props: { params: { itemId: string } }) => {
   const itemId = props.params.itemId
-  const [todoDetails, setTodoDetails] = useState({ name: '', memo: '', imageUrl: '', isCompleted: false });
+  const [todoDetails, setTodoDetails] = useState<TodoDetails>({ name: '', memo: '', imageUrl: '', isCompleted: false });
   const [isModified, setIsModified] = useState(false);
-  const { name, memo, imageUrl, isCompleted, setName, setMemo, setImageUrl, setIsCompleted } = useTodoDetailStore();
+  const { setName, setMemo, setIsCompleted } = useTodoDetailStore();
 
   const router = useRouter();
 
@@ -29,6 +37,7 @@ const Detail = (props: { params: { itemId: string } }) => {
   const fetchData = async () => {
     try {
       const response = await axios.get(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`)
+      console.log('Fetched data:', response.data);
       setTodoDetails(response.data)
       setName(response.data.name);
       setMemo(response.data.memo);
@@ -44,17 +53,32 @@ const Detail = (props: { params: { itemId: string } }) => {
       const updateData = {
         name: todoDetails.name.trim() !== '' ? todoDetails.name : '',
         memo: todoDetails.memo.trim() !== '' ? todoDetails.memo : '',
-        imageUrl: todoDetails.imageUrl,
+        imageUrl: todoDetails.imageUrl !== null ? todoDetails.imageUrl : '',
         isCompleted: todoDetails.isCompleted
       };
-      const response = await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
+      await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
       setIsModified(true);
       handleNavigation()
-      fetchData(); // 완료 후 데이터를 다시 가져옴
+      console.log('After update:', updateData);
+      alert('수정 완료')
+      // fetchData(); // 완료 후 데이터를 다시 가져옴
     } catch (error) {
       console.error('Error:', error);
     }
   }
+
+  //투두 삭제 함수
+  const deleteTodo = async () => {
+    try {
+      await axios.delete(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`)
+      handleNavigation()
+      // fetchData(); // 완료 후 데이터를 다시 가져옴
+      console.log('삭제 성공')
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
 
 
 
@@ -68,14 +92,14 @@ const Detail = (props: { params: { itemId: string } }) => {
         <CheckListDetail todoDetails={todoDetails} setTodoDetails={setTodoDetails} />
         <div className={imageMemoContainer}>
           <ImageRegistration imageUrl={todoDetails.imageUrl} />
-          <MemoRegistration memo={todoDetails.memo} setMemo={(newMemo) => setTodoDetails({ ...todoDetails, memo: newMemo })} />
+          <MemoRegistration memo={todoDetails.memo} setMemo={(newMemo: string) => setTodoDetails({ ...todoDetails, memo: newMemo })} />
         </div>
         <div className={detailBtnWrap}>
           <button className={isModified ? modifyBtnSuccess : modifyBtn} onClick={modifyTodoItem}>
             <Image src={checkIcon} alt="체크아이콘" />
             수정완료
           </button>
-          <button className={deleteBtn}>
+          <button className={deleteBtn} onClick={deleteTodo}>
             <Image src={xIcon} alt="엑스아이콘" />
             삭제하기
           </button>

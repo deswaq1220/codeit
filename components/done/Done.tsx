@@ -5,7 +5,7 @@ import CheckListDone from '../checkList/checkListDone/CheckListDone'
 import { doneContainer, doneIcon, doneImageContainer, doneTextContainer, emptyDone } from './done.css'
 
 interface DoneProps {
-  doneItems: Array<{ id: string, name: string }>
+  doneItems: Array<{ id: number, name: string }>
 }
 const Done = ({ doneItems }: DoneProps) => {
   const hasIncompleteItems = doneItems.length > 0;

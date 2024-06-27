@@ -8,8 +8,8 @@ export const memoContainer = style({
   padding: '24px 16px',
   boxSizing:'border-box',
   backgroundImage: 'url(/images/memo.svg)',
-  backgroundSize: 'cover',
-  backgroundRepeat: 'no-repeat',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'repeat',
   '@media': {
     'screen and (max-width:1366px) and (min-width:376px) ': {
       marginTop:'24px',
@@ -45,4 +45,15 @@ export const textArea = style({
   ':focus': {
     outline: 'none', // 포커스 시 아웃라인 제거
   },
+  '::-webkit-scrollbar': {
+    width: '4px', // 스크롤바의 너비
+    height: '4px', // 가로 스크롤바의 높이
+  },
+  '::-webkit-scrollbar-thumb': {
+    backgroundColor: vars.amber200, // 스크롤바 색상
+    borderRadius: '4px', 
+  },
+  '::-webkit-scrollbar-track': {
+    backgroundColor: 'transparent', // 스크롤바 트랙 색상
+  }
 })

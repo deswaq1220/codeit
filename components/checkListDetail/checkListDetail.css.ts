@@ -25,3 +25,7 @@ export const checkListName = style({
   fontSize: '16px',
   cursor:'pointer'
 })
+
+export const checkIcon = style({
+  marginRight: '16px',
+})

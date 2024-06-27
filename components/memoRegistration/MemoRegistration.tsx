@@ -1,9 +1,12 @@
 import '@/app/page.module.css';
 import { memoContainer, memoText, textArea } from "./memoRegistration.css";
-const MemoRegistration = ({ memo, setMemo }) => {
 
+interface MemoRegistrationProps {
+  memo: string;
+  setMemo: (memo: string) => void;
+}
 
-
+const MemoRegistration = ({ memo, setMemo }: MemoRegistrationProps) => {
   return (
     <div className={memoContainer}>
       <div className={memoText}>

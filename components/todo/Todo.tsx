@@ -6,7 +6,7 @@ import { emptyTodo, todoContainer, todoIcon, todoImageContainer, todoTextContain
 
 
 interface TodoProps {
-  todoItems: Array<{ id: string, name: string }>;
+  todoItems: Array<{ id: number, name: string }>;
   completedTodoItem: (itemId: number) => void;
 }
 

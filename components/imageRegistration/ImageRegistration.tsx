@@ -9,7 +9,11 @@ import { useRef, useState } from 'react'
 import { addImageBtn, imageContainer, images, modifyImageBtn } from './imageRegistration.css'
 const tenantId = "sexydynamite";
 
-const ImageRegistration = ({ imageUrl }) => {
+interface ImageRegistrationProps {
+  imageUrl: string;
+}
+
+const ImageRegistration = ({ imageUrl }: ImageRegistrationProps) => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);

@@ -23,6 +23,7 @@ export const vars = {
   rose500: '#F43F5E',
   lime300: '#BEF264',
   amber800: '#92400E',
+  amber200:'#FDE68A',
   gray50: '#F9FAFB'
 };
 

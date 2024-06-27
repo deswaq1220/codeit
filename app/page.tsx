@@ -10,10 +10,16 @@ import './page.module.css';
 
 const tenantId = "sexydynamite";
 
+interface TodoItem {
+  id: number;
+  name: string;
+  isCompleted: boolean;
+}
+
 export default function Home() {
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const [hasMounted, setHasMounted] = useState(false);
-  const [todoItems, setTodoItems] = useState([]);
+  const [todoItems, setTodoItems] = useState<TodoItem[]>([]);
 
 
   // 투두 불러오는 함수

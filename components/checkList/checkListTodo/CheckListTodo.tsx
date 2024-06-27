@@ -2,11 +2,21 @@
 import { useRouter } from "next/navigation";
 import { checkBoxTodoImage, checkListTodoContainer } from "./checkListTodo.css";
 
-const CheckListTodo = ({ todoItems, completedTodoItem }) => {
+interface TodoItem {
+  id: number;
+  name: string;
+}
+
+interface CheckListTodoProps {
+  todoItems: TodoItem[];
+  completedTodoItem: (itemId: number) => void;
+}
+
+const CheckListTodo = ({ todoItems, completedTodoItem }: CheckListTodoProps) => {
   const router = useRouter();
 
 
-  const handleNavigation = (id) => {
+  const handleNavigation = (id: number) => {
     router.push(`/detail/${id}`);
   }
 
