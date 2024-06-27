@@ -96,9 +96,8 @@ export default function Home() {
     try {
       const response = await axios.post(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items`, { name });
       if (response.status === 201) {
-        setPage(1); // 첫 페이지부터 다시 불러옴
-        setTodoItems([]); // 데이터 초기화
-        fetchTodoData(1); // 첫 페이지 데이터를 다시 불러옴
+        const newItem = response.data;
+        setTodoItems(prevItems => [newItem, ...prevItems]); // 새 항목을 기존 항목 앞에 추가
       }
     } catch (error) {
       console.error('Error:', error);

@@ -59,7 +59,7 @@ const Detail = (props: { params: { itemId: string } }) => {
       await axios.patch(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`, updateData)
       setIsModified(true);
       handleNavigation()
-      console.log('수정된 데이터:', updateData);
+      // console.log('수정된 데이터:', updateData);
       alert('수정 완료')
       // fetchData(); // 완료 후 데이터를 다시 가져옴
     } catch (error) {
@@ -73,7 +73,8 @@ const Detail = (props: { params: { itemId: string } }) => {
       await axios.delete(`https://assignment-todolist-api.vercel.app/api/${tenantId}/items/${itemId}`)
       handleNavigation()
       // fetchData(); // 완료 후 데이터를 다시 가져옴
-      console.log('삭제 성공')
+      // console.log('삭제 성공')
+      alert('삭제되었습니다🍀')
     } catch (error) {
       console.error('Error:', error);
     }

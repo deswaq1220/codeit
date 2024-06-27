@@ -51,7 +51,7 @@ const ImageRegistration = ({ imageUrl, onUploadSuccess }: ImageRegistrationProps
       const uploadedUrl = response.data.url; // 반환된 URL
       onUploadSuccess(uploadedUrl); // 부모 컴포넌트에 URL 전달
       alert('사진이 업로드 되었습니다! 수정완료를 누르지 않으면 사진이 등록되지 않으니 주의해주세요😄')
-      console.log('업로드 성공:', response.data);
+      // console.log('업로드 성공:', response.data);
 
     } catch (error) {
       console.error('업로드 실패:', error);
