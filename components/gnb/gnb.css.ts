@@ -33,7 +33,7 @@ export const logo = style({
   backgroundSize: 'contain',
   backgroundRepeat: 'no-repeat',
   '@media': {
-    'screen and (max-width: 500px) and (min-width:320px)': {
+    'screen and (max-width: 520px) and (min-width:320px)': {
       backgroundImage: 'url(/images/logoS.svg)',
     },
   },
